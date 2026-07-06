@@ -77,12 +77,12 @@
 
 
 
-            <div class="pst_absolute w_100 hpx_200 no_link" id="play" style=" top:8%; "></div>
+            <div class="pst_absolute w_100 hpx_200 no_link" id="play" style=" top:11.5%;   "></div>
             
             
             
             
-            <div class="pst_absolute w_100" style="height: 150px; top: 45%; ">
+            <div class="pst_absolute w_100" style="height: 200px; top: 60.5%;  ">
                 <center class="h_100" style="display: flex;">
                     <a class="w_100 h_100 d_block" href="https://maps.app.goo.gl/Nf77tYmSfgYUYVFq8" target="_blank"></a>
                     <!--<a class="w_50 h_100 d_block" href="https://maps.app.goo.gl/zSe7PfYYWhS45rLZ8" target="_blank"></a>-->
@@ -90,121 +90,12 @@
             </div>
 
 
-            <a class="pst_absolute w_100 hpx_150 d_block" style=" bottom: 3%;"
-            href="https://api.whatsapp.com/send?phone=+5215583878916&text=Hola,%20confirmo%20mi%20asistencia%20a%20tu%20evento" target="_blank"></a>
+            <!--<a class="pst_absolute w_100 hpx_150 d_block" style=" bottom: 3%;  background-color: rgba(255, 0, 0, 0.39); "
+            href="https://api.whatsapp.com/send?phone=+5215583878916&text=Hola,%20confirmo%20mi%20asistencia%20a%20tu%20evento" target="_blank"></a>-->
 
 
 
-            
-            <div class="pst_absolute w_100  no_link" style=" bottom:25%;   ">
-
-
-
-
-
-
-
-<style>
-.formulario{
-    margin: 0px 20px;
-}
-label{
-    display:block;
-    font-size:22px;
-    font-style:italic;
-    font-weight:bold;
-    margin-bottom:8px;
-    margin-top:25px;
-    color: white;
-}
-input,
-textarea{
-    width:100%;
-    background: transparent;
-    border:1px solid white;
-    color:white;
-    padding:12px;
-    font-size:22px;
-    border-radius:0px;
-}
-
-
-textarea{
-    resize:none;
-    height:100px;
-    border-radius:0px;
-}
-.opciones{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-}
-.opciones input{
-    display:none;
-}
-.opciones label{
-    margin:0;
-    padding:18px;
-    background:#222;
-    border:1px solid #ffffff;
-    cursor:pointer;
-    transition:.3s;
-}
-.opciones input:checked + label{
-    background:#109548;
-    
-}
-button{
-    width:100%;
-    margin-top:25px;
-    padding:16px;
-    background:#109548;
-    color:white;
-    border:none;
-    border-radius:0px;
-    font-size:22px;
-    font-weight:bold;
-    cursor:pointer;
-}
-button:hover{
-    background:#109548;
-}
-small{
-    display:block;
-    text-align:center;
-    margin-top:12px;
-    color:#ffffff;
-}
-</style>
-
-
-
-
-                <div class="formulario m_0a">
-                    <label>Tu nombre *</label>
-                    <input type="text" id="nombre" required>
-                    <label>¿Asistirás? *</label>
-                    <div class="opciones">
-                        <input type="radio" id="si" name="asistencia" value="Sí, asistiré" checked>
-                        <label for="si">✅ ¡Sí! Ahí estaré.</label>
-                        <input type="radio" id="no" name="asistencia" value="No podré asistir">
-                        <label for="no">❌ No podré asistir.</label>
-                    </div>
-                    
-                    <label>¿Cuántas personas asistirán (incluyéndote)?</label>
-                    <input type="number" id="personas" min="1">
-                    <label>¿Qué canción te pondrá a bailar?</label>
-                    <input type="text" id="cancion">
-                    <label>Consejos o buenos deseos para el graduado</label>
-                    <textarea id="mensaje"></textarea>
-                    
-                    <button onclick="enviarWhatsApp()">Confirmar Asistencia</button>
-                    <small>Nunca compartiremos tu información.</small>
-                </div>
-
-            </div>
-            
-            
+                
 
 
         <!-- Footer -->
@@ -387,10 +278,6 @@ $('#sound,#play').click(() => {
 
 
 
-
-
-
-
 document.addEventListener('DOMContentLoaded', function() {
 
     floatingController.register('#controls', '.content', {
@@ -403,9 +290,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 });
-
-
-
 
 
 
@@ -428,43 +312,6 @@ $(window).scrollTop(0);
 
 
 
-
-function enviarWhatsApp() {
-    const nombre = document.getElementById("nombre").value.trim();
-    if (nombre === "") {
-        Swal.fire({
-            icon: 'warning',
-            title: 'Nombre requerido',
-            text: 'Por favor escribe tu nombre.',
-            confirmButtonText: 'Aceptar'
-        });
-        return;
-    }
-    const asistencia = document.querySelector('input[name="asistencia"]:checked');
-    if (!asistencia) {
-        Swal.fire({
-            icon: 'warning',
-            title: 'Selecciona una opción',
-            text: 'Indica si asistirás al evento.',
-            confirmButtonText: 'Aceptar'
-        });
-        return;
-    }
-    const personas = document.getElementById("personas").value.trim();
-    const cancion = document.getElementById("cancion").value.trim();
-    const mensaje = document.getElementById("mensaje").value.trim();
-    const texto = `
-    🎓 *Confirmación de Asistencia*
-    👤 *Nombre:* ${nombre}
-    📌 *Asistencia:* ${asistencia.value}
-    👥 *Personas:* ${personas || "No especificado"}
-    🎵 *Canción:* ${cancion || "Sin sugerencia"}
-    💌 *Mensaje:* ${mensaje || "Sin mensaje"}
-    `;
-    const telefono = "+5212431386791"; // Cambia por tu número
-    const url = `https://wa.me/${telefono}?text=${encodeURIComponent(texto)}`;
-    window.open(url, "_blank");
-}
 
 
 
